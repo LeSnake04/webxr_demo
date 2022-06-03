@@ -1,16 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
-
-[sub_resource type="PhysicsMaterial" id=1]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.243137, 0, 1, 1 )
-
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="BoxShape" id=4]
 
 [sub_resource type="SphereShape" id=5]
 
@@ -20,32 +11,45 @@ albedo_color = Color( 0.0862745, 1, 0.00392157, 1 )
 [sub_resource type="SphereMesh" id=6]
 material = SubResource( 7 )
 
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.290196, 0.733333, 0.0392157, 1 )
+
+[sub_resource type="SphereMesh" id=8]
+material = SubResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.847059, 0.0196078, 0.368627, 1 )
+
+[sub_resource type="CubeMesh" id=11]
+material = SubResource( 10 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.184314, 0.0823529, 0.768627, 1 )
+
+[sub_resource type="CylinderMesh" id=13]
+material = SubResource( 12 )
+
+[sub_resource type="Skin" id=14]
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.905882, 0.231373, 0.0509804, 1 )
+
+[sub_resource type="CapsuleMesh" id=16]
+material = SubResource( 15 )
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="ARVROrigin" type="ARVROrigin" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44721, 1.06844, 0.0945139 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80339, 2.40231, 7.46857 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.78467, 9.29908 )
 fov = 132.188
 
-[node name="Gound" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.297129, 25.8492, 58.4732 )
-physics_material_override = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Gound"]
-transform = Transform( 99.9988, 0, 0.4852, 0, 1, 0, -0.4852, 0, 99.9988, -3.04524, -47.9199, -101.357 )
-material_override = SubResource( 2 )
-mesh = SubResource( 3 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="Gound"]
-transform = Transform( 10, 0, 0, 0, 2, 0, 0, 0, 120, 0, -65.064, 0 )
-shape = SubResource( 4 )
-
 [node name="Box" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.997086, 0.076284, 0, -0.076284, 0.997086, 0, 0.957516, -1.63869 )
+visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Box"]
 shape = SubResource( 5 )
@@ -62,3 +66,36 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13915, -2.3548, 8.62997 )
 margin_right = 386.0
 margin_bottom = 146.0
 text = "Start XR"
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.56186 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.637 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.95723 )
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="StaticBody3" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.51163, 0, 14.637 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10267, -0.00740147, -4.90949 )
+mesh = SubResource( 13 )
+skin = SubResource( 14 )
+material/0 = null
+
+[node name="StaticBody4" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.554, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3054, 0, 4.73211 )
+mesh = SubResource( 16 )
+skeleton = NodePath("../../StaticBody4")
+material/0 = null

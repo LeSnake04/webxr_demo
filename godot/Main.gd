@@ -37,9 +37,9 @@ func _webxr_session_supported(session_mode, supported):
 		vr_supported = supported
 
 func _on_Button_pressed():
-	#if not vr_supported:
-	#	OS.alert("Your browser doesn't support VR")
-	#	return
+	if not vr_supported:
+		OS.alert("Your browser doesn't support VR")
+		return
 
 	# We want an immersive VR session, as opposed to AR ('immersive-ar') or a
 	# simple 3DoF viewer ('viewer').
