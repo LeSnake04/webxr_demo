@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.243137, 0, 1, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="SphereShape" id=5]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.0862745, 1, 0.00392157, 1 )
+
+[sub_resource type="SphereMesh" id=6]
+material = SubResource( 7 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44721, 1.06844, 0.0945139 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.78467, 9.29908 )
+fov = 132.188
+
+[node name="Gound" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.297129, 25.8492, 58.4732 )
+physics_material_override = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gound"]
+transform = Transform( 99.9988, 0, 0.4852, 0, 1, 0, -0.4852, 0, 99.9988, -3.04524, -47.9199, -101.357 )
+material_override = SubResource( 2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Gound"]
+transform = Transform( 10, 0, 0, 0, 2, 0, 0, 0, 120, 0, -65.064, 0 )
+shape = SubResource( 4 )
+
+[node name="Box" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.997086, 0.076284, 0, -0.076284, 0.997086, 0, 0.957516, -1.63869 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Box"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0233166, -0.00686121, -0.00384176 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="RightHand" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13915, -2.3548, 8.62997 )
+
+[node name="Button" type="Button" parent="."]
+margin_right = 386.0
+margin_bottom = 146.0
+text = "Start XR"
