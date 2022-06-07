@@ -1,15 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ISS.glb" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=3]
-
-[sub_resource type="SphereShape" id=5]
-
-[sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.0862745, 1, 0.00392157, 1 )
-
-[sub_resource type="SphereMesh" id=6]
-material = SubResource( 7 )
+[ext_resource path="res://Fisch.glb" type="PackedScene" id=4]
 
 [sub_resource type="SpatialMaterial" id=9]
 albedo_color = Color( 0.290196, 0.733333, 0.0392157, 1 )
@@ -38,29 +31,15 @@ albedo_color = Color( 0.905882, 0.231373, 0.0509804, 1 )
 material = SubResource( 15 )
 
 [node name="Spatial" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0787573, -0.421723, -7.79516 )
 script = ExtResource( 3 )
 
 [node name="ARVROrigin" type="ARVROrigin" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80339, 2.40231, 7.46857 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95915, 0.286575, 6.48078 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.78467, 9.29908 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82906, 0.948048 )
 fov = 132.188
-
-[node name="Box" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.997086, 0.076284, 0, -0.076284, 0.997086, 0, 0.957516, -1.63869 )
-visible = false
-
-[node name="CollisionShape" type="CollisionShape" parent="Box"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0233166, -0.00686121, -0.00384176 )
-mesh = SubResource( 6 )
-material/0 = null
-
-[node name="RightHand" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13915, -2.3548, 8.62997 )
 
 [node name="Button" type="Button" parent="."]
 margin_right = 386.0
@@ -75,7 +54,7 @@ mesh = SubResource( 8 )
 material/0 = null
 
 [node name="StaticBody2" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.637 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.5497 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.95723 )
@@ -99,3 +78,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3054, 0, 4.73211 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../../StaticBody4")
 material/0 = null
+
+[node name="ISS" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10.7246, 0, 8.99903, 0, 14, 0, -8.99903, 0, 10.7246, 4.41421, 2.77692, 2.84266 )
+
+[node name="Fisch" parent="." instance=ExtResource( 4 )]
+transform = Transform( 7.66044, 0, 6.42788, 0, 10, 0, -6.42788, 0, 7.66044, 2.04314, 2.32471, -1.67101 )
