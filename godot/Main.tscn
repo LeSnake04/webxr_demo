@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ISS.glb" type="PackedScene" id=1]
+[ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://Fisch.glb" type="PackedScene" id=4]
 
@@ -34,12 +35,8 @@ material = SubResource( 15 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0787573, -0.421723, -7.79516 )
 script = ExtResource( 3 )
 
-[node name="ARVROrigin" type="ARVROrigin" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95915, 0.286575, 6.48078 )
-
-[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82906, 0.948048 )
-fov = 132.188
+[node name="FPController" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.983035, -0.0622854, 0.172522, 0.0613478, 0.998058, 0.0107665, -0.172857, 0, 0.984947, 4.04699, -0.103098, 9.74338 )
 
 [node name="Button" type="Button" parent="."]
 margin_right = 386.0
@@ -74,7 +71,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.554, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3054, 0, 4.73211 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.37498, -0.392397, 4.76127 )
 mesh = SubResource( 16 )
 skeleton = NodePath("../../StaticBody4")
 material/0 = null
